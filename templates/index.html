@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-gram Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 50px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>N-gram Generator</h2>
+        <form method="POST">
+            <label for="text">Enter Text:</label><br>
+            <textarea id="text" name="text" rows="5" required></textarea><br>
+
+            <label for="n">Enter N (e.g., 2 for bigrams, 3 for trigrams):</label><br>
+            <input type="number" id="n" name="n" min="2" max="10" required><br>
+
+            <label for="keywords">Enter Keywords (comma-separated):</label><br>
+            <input type="text" id="keywords" name="keywords" required><br>
+
+            <button type="submit">Generate N-grams</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>Filtered N-grams:</h3>
+            <ul>
+                {% for ngram in result %}
+                <li>{{ ngram }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
